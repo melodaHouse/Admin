@@ -1,3 +1,165 @@
+/* Sureshot fix: Set max-width for each Queries table column and prevent overflow */
+.gq-table-pagination-container .card {
+  max-width: 100vw;
+  overflow-x: auto;
+}
+.gq-table-pagination-container th,
+.gq-table-pagination-container td {
+  max-width: 1px; /* allow min-content shrink */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gq-table-pagination-container th:nth-child(1),
+.gq-table-pagination-container td:nth-child(1) { /* Name */
+  max-width: 140px;
+}
+.gq-table-pagination-container th:nth-child(2),
+.gq-table-pagination-container td:nth-child(2) { /* Email */
+  max-width: 180px;
+}
+.gq-table-pagination-container th:nth-child(3),
+.gq-table-pagination-container td:nth-child(3) { /* Message */
+  max-width: 350px;
+  white-space: pre-line;
+  word-break: break-all;
+}
+.gq-table-pagination-container th:nth-child(4),
+.gq-table-pagination-container td:nth-child(4) { /* Created At */
+  max-width: 160px;
+}
+.gq-table-pagination-container th:nth-child(5),
+.gq-table-pagination-container td:nth-child(5) { /* Reply */
+  max-width: 80px;
+}
+.gq-table-pagination-container th:nth-child(6),
+.gq-table-pagination-container td:nth-child(6) { /* Status */
+  max-width: 100px;
+}
+/* Special fix for Queries page: prevent message cell from overflowing main layout */
+.gq-table-pagination-container .card {
+  max-width: 100vw;
+  overflow-x: auto;
+}
+
+.gq-table-pagination-container .message-cell {
+  max-width: 350px;
+  min-width: 120px;
+  width: 100%;
+  white-space: pre-line;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* Email cell and mail button styles */
+.email-cell {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+.email-text {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.email-spacer {
+  flex: 1 1 auto;
+}
+.mail-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e3f0ff;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  margin-left: 8px;
+  color: #1976d2;
+  text-decoration: none;
+  border: none;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+}
+.mail-btn:hover {
+  background: #1976d2;
+  color: #fff;
+}
+.mail-btn svg {
+  display: block;
+}
+.mail-btn-label {
+  margin-left: 4px;
+  color: inherit;
+}
+/* Message cell styles */
+/* Prevent long messages from overflowing the page */
+.message-cell {
+  max-width: 350px !important;
+  min-width: 120px;
+  width: 100%;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  background: #f8f8f8;
+  border-radius: 4px;
+  padding: 2px 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  z-index: 2;
+}
+
+.message-cell.expanded {
+  max-width: 350px !important;
+  width: 100%;
+  max-height: 220px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #f8f8f8;
+  border-radius: 4px;
+  padding: 2px 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  z-index: 10;
+}
+
+td .message-cell, th .message-cell {
+  max-width: 400px;
+  min-width: 120px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Table container scroll for overflow */
+.card {
+  max-width: 100%;
+  overflow-x: auto;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+/* See more/less as blue text link */
+ .message-cell .see-more-link, td .see-more-link {
+  color: blue !important;
+  cursor: pointer !important;
+  margin-left: 16px;
+  font-size: 0.95em;
+  text-decoration: underline;
+  user-select: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+td .message-cell {
+  width: 100%;
+}
 .App {
   text-align: center;
 }

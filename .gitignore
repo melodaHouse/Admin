@@ -3,9 +3,28 @@
 # dependencies
 /node_modules
 /.pnp
+# dependencies
+node_modules/
+
+# production
+build/
+dist/
+
+# misc
+.env
+.env.*
+*.log
+npm-debug.log*
 .pnp.js
 
 # testing
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
 /coverage
 
 # production
