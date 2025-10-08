@@ -4,10 +4,10 @@ function MessageCell({ message }) {
   const [expanded, setExpanded] = useState(false);
   const maxLength = 40;
   const isLong = message.length > maxLength;
-    const displayText = expanded || !isLong ? message : message.slice(0, maxLength) + "...";
+    const displayText = expanded || !isLong ? message : message.slice(0, maxLength) + "..."; 
     return (
       <div className={"message-cell" + (expanded ? " expanded" : "")}>
-        <pre>{displayText}</pre>
+        <p style={{margin:0,whiteSpace:'pre-wrap',wordBreak:'break-word',overflowWrap:'anywhere'}}>{displayText}</p>
       {isLong && (
         <span className={expanded ? "see-less" : "see-more"} onClick={() => setExpanded(e => !e)}>
           {expanded ? "  See less" : "  See more"}
