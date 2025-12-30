@@ -230,7 +230,7 @@ export default function TrialsPage() {
       getScheduledTrialsTomorrow(schedulePage);
     } else if (activeScheduleTab === 'next7') {
       getScheduledTrialsNext7(schedulePage);
-        } else if (activeScheduleTab === 'past') {
+    } else if (activeScheduleTab === 'past') {
       getScheduledTrialsPast(schedulePage);
     }
   }, [activeTab, activeScheduleTab, schedulePage]);
@@ -270,7 +270,7 @@ export default function TrialsPage() {
   // Remove getTabRows and getScheduleRows for now (not needed for API tabs)
 
   // handleStage is now a no-op or can be removed, since local rows are not used
-  const handleStage = () => {};
+  const handleStage = () => { };
 
   const openCancelPopup = (id) => {
     setCancelId(id);
@@ -334,32 +334,108 @@ export default function TrialsPage() {
         // Scheduled tab: show 3 buttons (Reschedule, Mark as Completed, Cancel) for scheduled rows
         if (activeTab === 'scheduled') {
           return (
-            <div style={{ display: 'flex', gap: 8, justifyContent: 'center', alignItems: 'center' }}>
+            <div
+              style={{
+                display: "flex",
+                gap: 8,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {/* 🔹 Reschedule Button */}
               <button
                 className="btn reschedule-btn"
-                style={{ minWidth: 90, padding: '6px 10px', fontWeight: 600, fontSize: 13, background: '#fffbe6', color: '#b26a00', border: '1px solid #ffe58f', borderRadius: 5, display: 'flex', alignItems: 'center', gap: 6 }}
+                style={{
+                  minWidth: 90,
+                  padding: "6px 10px",
+                  fontWeight: 600,
+                  fontSize: 13,
+                  background: "#fffbe6",
+                  color: "#b26a00",
+                  border: "1px solid #ffe58f",
+                  borderRadius: 5,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 6,
+                }}
                 onClick={() => openReschedulePopup(row._id)}
               >
-                <svg width="16" height="16" fill="#b26a00" viewBox="0 0 20 20" style={{marginRight: 2}}><path d="M10 2a8 8 0 1 1-7.446 4.89.75.75 0 1 1 1.392-.56A6.5 6.5 0 1 0 10 3.5V6a.75.75 0 0 1-1.5 0V2.75A.75.75 0 0 1 9.25 2H10z"/></svg>
+                <span style={{ width: 18, height: 18, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg
+                    width="18"
+                    height="18"
+                    fill="#b26a00"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 2a8 8 0 1 1-7.446 4.89.75.75 0 1 1 1.392-.56A6.5 6.5 0 1 0 10 3.5V6a.75.75 0 0 1-1.5 0V2.75A.75.75 0 0 1 9.25 2H10z" />
+                  </svg>
+                </span>
                 Reschedule
               </button>
+
+              {/* 🔹 Completed Button */}
               <button
                 className="btn complete-btn"
-                style={{ minWidth: 90, padding: '6px 10px', fontWeight: 600, fontSize: 13, background: '#e6ffed', color: '#237804', border: '1px solid #b7eb8f', borderRadius: 5, display: 'flex', alignItems: 'center', gap: 6 }}
+                style={{
+                  minWidth: 90,
+                  padding: "6px 10px",
+                  fontWeight: 600,
+                  fontSize: 13,
+                  background: "#e6ffed",
+                  color: "#237804",
+                  border: "1px solid #b7eb8f",
+                  borderRadius: 5,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 6,
+                }}
                 onClick={() => handleMarkCompleted(row._id)}
               >
-                <svg width="16" height="16" fill="#237804" viewBox="0 0 20 20" style={{marginRight: 2}}><path d="M7.629 14.29a1 1 0 0 1-1.415 0l-3.5-3.5a1 1 0 1 1 1.415-1.415l2.793 2.793 6.793-6.793a1 1 0 0 1 1.415 1.415l-7.5 7.5z"/></svg>
+                <span style={{ width: 18, height: 18, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg
+                    width="18"
+                    height="18"
+                    fill="#237804"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M7.629 14.29a1 1 0 0 1-1.415 0l-3.5-3.5a1 1 0 1 1 1.415-1.415l2.793 2.793 6.793-6.793a1 1 0 0 1 1.415 1.415l-7.5 7.5z" />
+                  </svg>
+                </span>
                 Completed
               </button>
+
+              {/* 🔹 Cancel Button */}
               <button
                 className="btn cancel-btn"
-                style={{ minWidth: 80, padding: '6px 10px', fontWeight: 600, fontSize: 13, background: '#fff1f0', color: '#a8071a', border: '1px solid #ffa39e', borderRadius: 5, display: 'flex', alignItems: 'center', gap: 6 }}
+                style={{
+                  minWidth: 80,
+                  padding: "6px 10px",
+                  fontWeight: 600,
+                  fontSize: 13,
+                  background: "#fff1f0",
+                  color: "#a8071a",
+                  border: "1px solid #ffa39e",
+                  borderRadius: 5,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 6,
+                }}
                 onClick={() => openCancelPopup(row._id)}
               >
-                <svg width="16" height="16" fill="#a8071a" viewBox="0 0 20 20" style={{marginRight: 2}}><path d="M10 8.586l4.95-4.95a1 1 0 1 1 1.414 1.415L11.414 10l4.95 4.95a1 1 0 0 1-1.414 1.415L10 11.414l-4.95 4.95a1 1 0 0 1-1.415-1.415L8.586 10l-4.95-4.95A1 1 0 1 1 5.05 3.636L10 8.586z"/></svg>
+                <span style={{ width: 18, height: 18, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg
+                    width="18"
+                    height="18"
+                    fill="#a8071a"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 8.586l4.95-4.95a1 1 0 1 1 1.414 1.415L11.414 10l4.95 4.95a1 1 0 0 1-1.414 1.415L10 11.414l-4.95 4.95a1 1 0 0 1-1.415-1.415L8.586 10l-4.95-4.95A1 1 0 1 1 5.05 3.636L10 8.586z" />
+                  </svg>
+                </span>
                 Cancel
               </button>
             </div>
+
           );
         }
 
@@ -384,12 +460,12 @@ export default function TrialsPage() {
                     marginRight: 8
                   }}></span>
                 ) : (
-                  <svg width="16" height="16" fill="#0958d9" viewBox="0 0 20 20" style={{marginRight: 2}}><path d="M2.003 5.884l2-3.5A2 2 0 0 1 5.617 1h8.766a2 2 0 0 1 1.614.884l2 3.5A2 2 0 0 1 18 7.382V15a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.382a2 2 0 0 1 .003-.498zM4.618 3l-2 3.5V15a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6.5l-2-3.5H4.618z"/></svg>
+                  <svg width="22" height="22" fill="#0958d9" viewBox="0 0 20 20" style={{ marginRight: 2 }}><path d="M2.003 5.884l2-3.5A2 2 0 0 1 5.617 1h8.766a2 2 0 0 1 1.614.884l2 3.5A2 2 0 0 1 18 7.382V15a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.382a2 2 0 0 1 .003-.498zM4.618 3l-2 3.5V15a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6.5l-2-3.5H4.618z" /></svg>
                 )}
                 Contacted
               </button>
               <button className="btn cancel-btn" style={{ minWidth: 80, padding: '6px 10px', fontWeight: 600, fontSize: 13, background: '#fff1f0', color: '#a8071a', border: '1px solid #ffa39e', borderRadius: 5, display: 'flex', alignItems: 'center', gap: 6 }} onClick={() => openCancelPopup(row._id)}>
-                <svg width="16" height="16" fill="#a8071a" viewBox="0 0 20 20" style={{marginRight: 2}}><path d="M10 8.586l4.95-4.95a1 1 0 1 1 1.414 1.415L11.414 10l4.95 4.95a1 1 0 0 1-1.414 1.415L10 11.414l-4.95 4.95a1 1 0 0 1-1.415-1.415L8.586 10l-4.95-4.95A1 1 0 1 1 5.05 3.636L10 8.586z"/></svg>
+                <svg width="22" height="22" fill="#a8071a" viewBox="0 0 20 20" style={{ marginRight: 2 }}><path d="M10 8.586l4.95-4.95a1 1 0 1 1 1.414 1.415L11.414 10l4.95 4.95a1 1 0 0 1-1.414 1.415L10 11.414l-4.95 4.95a1 1 0 0 1-1.415-1.415L8.586 10l-4.95-4.95A1 1 0 1 1 5.05 3.636L10 8.586z" /></svg>
                 Cancel
               </button>
             </span>
@@ -403,11 +479,11 @@ export default function TrialsPage() {
                 onClick={() => openSchedulePopup(row._id)}
                 style={{ minWidth: 90, padding: '6px 10px', fontWeight: 600, fontSize: 13, background: '#fffbe6', color: '#b26a00', border: '1px solid #ffe58f', borderRadius: 5, display: 'flex', alignItems: 'center', gap: 6 }}
               >
-                <svg width="16" height="16" fill="#b26a00" viewBox="0 0 20 20" style={{marginRight: 2}}><path d="M6 2a1 1 0 0 1 1 1v1h6V3a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V3a1 1 0 0 1 1-1zm0 2V3H4v1h2zm8 0V3h-2v1h2zM3 8v8h14V8H3z"/></svg>
+                <svg width="22" height="22" fill="#b26a00" viewBox="0 0 20 20" style={{ marginRight: 2 }}><path d="M6 2a1 1 0 0 1 1 1v1h6V3a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V3a1 1 0 0 1 1-1zm0 2V3H4v1h2zm8 0V3h-2v1h2zM3 8v8h14V8H3z" /></svg>
                 Schedule
               </button>
               <button className="btn cancel-btn" style={{ minWidth: 80, padding: '6px 10px', fontWeight: 600, fontSize: 13, background: '#fff1f0', color: '#a8071a', border: '1px solid #ffa39e', borderRadius: 5, display: 'flex', alignItems: 'center', gap: 6 }} onClick={() => openCancelPopup(row._id)}>
-                <svg width="16" height="16" fill="#a8071a" viewBox="0 0 20 20" style={{marginRight: 2}}><path d="M10 8.586l4.95-4.95a1 1 0 1 1 1.414 1.415L11.414 10l4.95 4.95a1 1 0 0 1-1.414 1.415L10 11.414l-4.95 4.95a1 1 0 0 1-1.415-1.415L8.586 10l-4.95-4.95A1 1 0 1 1 5.05 3.636L10 8.586z"/></svg>
+                <svg width="22" height="22" fill="#a8071a" viewBox="0 0 20 20" style={{ marginRight: 2 }}><path d="M10 8.586l4.95-4.95a1 1 0 1 1 1.414 1.415L11.414 10l4.95 4.95a1 1 0 0 1-1.414 1.415L10 11.414l-4.95 4.95a1 1 0 0 1-1.415-1.415L8.586 10l-4.95-4.95A1 1 0 1 1 5.05 3.636L10 8.586z" /></svg>
                 Cancel
               </button>
             </span>
@@ -452,7 +528,7 @@ export default function TrialsPage() {
 
   // Fetch contacted trials from API
   const getContactedTrials = async (pageNum) => {
-      setContactedTrialsLoading(true);
+    setContactedTrialsLoading(true);
     try {
       const token = localStorage.getItem("authToken");
       const response = await axios.get(
@@ -462,15 +538,15 @@ export default function TrialsPage() {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-        setContactedTrials(response.data.trials || []);
-        setContactedTrialsTotal(response.data.pagination?.totalItems || 0);
+      setContactedTrials(response.data.trials || []);
+      setContactedTrialsTotal(response.data.pagination?.totalItems || 0);
       setTotalPages(response.data.pagination?.totalPages || 1);
     } catch (err) {
-        setContactedTrials([]);
-        setContactedTrialsTotal(0);
+      setContactedTrials([]);
+      setContactedTrialsTotal(0);
       setTotalPages(1);
     }
-      setContactedTrialsLoading(false);
+    setContactedTrialsLoading(false);
   };
 
 
@@ -717,7 +793,7 @@ export default function TrialsPage() {
             </>
           ) : activeTab === 'contacted' ? (
             <>
-                <Table columns={columns} rows={contactedTrials} emptyText="No contacted trials" />
+              <Table columns={columns} rows={contactedTrials} emptyText="No contacted trials" />
               <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 16 }}>
                 <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>Prev</button>
                 <span>Page {page} of {totalPages}</span>
@@ -769,11 +845,11 @@ export default function TrialsPage() {
                 columns={columns}
                 rows={
                   activeScheduleTab === 'all' ? scheduledTrialsAll :
-                  activeScheduleTab === 'today' ? scheduledTrialsToday :
-                  activeScheduleTab === 'tomorrow' ? scheduledTrialsTomorrow :
-                  activeScheduleTab === 'next7' ? scheduledTrialsNext7 :
-                  activeScheduleTab === 'past' ? scheduledTrialsPast :
-                  []
+                    activeScheduleTab === 'today' ? scheduledTrialsToday :
+                      activeScheduleTab === 'tomorrow' ? scheduledTrialsTomorrow :
+                        activeScheduleTab === 'next7' ? scheduledTrialsNext7 :
+                          activeScheduleTab === 'past' ? scheduledTrialsPast :
+                            []
                 }
                 emptyText="No scheduled trials"
               />
@@ -782,27 +858,27 @@ export default function TrialsPage() {
                 <button onClick={() => setSchedulePage(p => Math.max(1, p - 1))} disabled={schedulePage === 1}>Prev</button>
                 <span>Page {schedulePage} of {
                   activeScheduleTab === 'all' ? scheduledAllTotalPages :
-                  activeScheduleTab === 'today' ? scheduledTodayTotalPages :
-                  activeScheduleTab === 'tomorrow' ? scheduledTomorrowTotalPages :
-                  activeScheduleTab === 'next7' ? scheduledNext7TotalPages :
-                  activeScheduleTab === 'past' ? scheduledPastTotalPages : 1
+                    activeScheduleTab === 'today' ? scheduledTodayTotalPages :
+                      activeScheduleTab === 'tomorrow' ? scheduledTomorrowTotalPages :
+                        activeScheduleTab === 'next7' ? scheduledNext7TotalPages :
+                          activeScheduleTab === 'past' ? scheduledPastTotalPages : 1
                 }</span>
                 <button
                   onClick={() => setSchedulePage(p => Math.min(
                     (activeScheduleTab === 'all' ? scheduledAllTotalPages :
                       activeScheduleTab === 'today' ? scheduledTodayTotalPages :
-                      activeScheduleTab === 'tomorrow' ? scheduledTomorrowTotalPages :
-                      activeScheduleTab === 'next7' ? scheduledNext7TotalPages :
-                      activeScheduleTab === 'past' ? scheduledPastTotalPages : 1),
+                        activeScheduleTab === 'tomorrow' ? scheduledTomorrowTotalPages :
+                          activeScheduleTab === 'next7' ? scheduledNext7TotalPages :
+                            activeScheduleTab === 'past' ? scheduledPastTotalPages : 1),
                     p + 1
                   ))}
                   disabled={
                     schedulePage === (
                       activeScheduleTab === 'all' ? scheduledAllTotalPages :
-                      activeScheduleTab === 'today' ? scheduledTodayTotalPages :
-                      activeScheduleTab === 'tomorrow' ? scheduledTomorrowTotalPages :
-                      activeScheduleTab === 'next7' ? scheduledNext7TotalPages :
-                      activeScheduleTab === 'past' ? scheduledPastTotalPages : 1
+                        activeScheduleTab === 'today' ? scheduledTodayTotalPages :
+                          activeScheduleTab === 'tomorrow' ? scheduledTomorrowTotalPages :
+                            activeScheduleTab === 'next7' ? scheduledNext7TotalPages :
+                              activeScheduleTab === 'past' ? scheduledPastTotalPages : 1
                     )
                   }
                 >Next</button>

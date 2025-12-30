@@ -1,11 +1,36 @@
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import apiUri from "../config/api";
 export default function ProfilePage() {
   const token = localStorage.getItem("authToken"); // or get from context
+
   const passwordRef = useRef();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [adminName, setAdminName] = useState("");
+  const [adminEmail, setAdminEmail] = useState("");
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchProfile = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`${apiUri}/profile`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("Profile data:", response.data);
+        setAdminName(response.data.admin.name || "");
+        setAdminEmail(response.data.admin.email || "");
+        setError("");
+      } catch (err) {
+        setError("Failed to fetch profile info.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProfile();
+  }, [token]);
 
   const handleSubmit = async (e) => {
   e.preventDefault();
@@ -54,14 +79,14 @@ export default function ProfilePage() {
           </div>
           <label>Name</label>
           <input
-            defaultValue="Admin"
+            value={loading ? "Loading..." : adminName}
             readOnly
             tabIndex={-1}
             style={{ background: "#f3f4f6", cursor: "not-allowed" }}
           />
           <label>Email</label>
           <input
-            defaultValue="admin@meloda.com"
+            value={loading ? "Loading..." : adminEmail}
             readOnly
             tabIndex={-1}
             style={{ background: "#f3f4f6", cursor: "not-allowed" }}
